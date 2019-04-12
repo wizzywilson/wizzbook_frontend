@@ -1,11 +1,19 @@
 
 %fb-color
    background: #335b94
-     
+
+%logo
+   height: 80px
+   width: auto
+   padding-top: 5px
+   position: absolute
+   left: 140px
+
 .register-header
    @extend %fb-color
    height: 84px
    width: 100%
+   position: relative
 
 .register-body
    height: 585px
@@ -14,12 +22,13 @@
 .register-footer
    height: 140px
 
-.logo
-   height: 80px
-   width: auto
-   padding-top: 5px
-   padding-left: 150px
-   margin-right: 400px
+.logo1
+   @extend %logo
+
+   
+.logo2
+   @extend %logo
+
 
 .login
    @extend %fb-color
@@ -29,8 +38,6 @@
    display: inline
    position: absolute
    top: 13px
-   @media screen and (max-width: 765px) 
-      display: none
    
 .sign_in_label
    color: white
@@ -50,5 +57,25 @@ a
    padding-bottom: 2px
 
 
-  
+@media screen and (max-width: 1140px) 
+   .logo1
+      left: 0px
+   .sign_in_form
+      right: 15px
+   .logo2
+      display: none
 
+@media screen and (min-width: 1140px) 
+   .logo1
+      
+   .sign_in_form
+      right: 140px
+   .logo2
+      display: none
+
+@media screen and (max-width: 630px) 
+   .logo1
+      display: none
+   .logo2
+      display: block
+      left: 0px
