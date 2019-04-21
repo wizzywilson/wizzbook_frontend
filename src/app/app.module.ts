@@ -7,7 +7,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material';
-import { AngularTokenModule } from 'angular-token';
+import { Angular2TokenService } from 'angular2-token';
+import { HttpModule } from '@angular/http';
+
 
 @NgModule({
   declarations: [
@@ -19,9 +21,10 @@ import { AngularTokenModule } from 'angular-token';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpModule
   ],
-  providers: [AngularTokenModule],
+  providers: [Angular2TokenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
