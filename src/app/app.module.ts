@@ -11,7 +11,7 @@ import { Angular2TokenService } from 'angular2-token';
 import { HttpModule } from '@angular/http';
 import { HomeComponent } from './home/home.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [Angular2TokenService],
   bootstrap: [AppComponent]

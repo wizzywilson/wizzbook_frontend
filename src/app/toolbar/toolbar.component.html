@@ -3,24 +3,27 @@
   <img class="logo1" src="assets/img/Facebook.svg" alt="">
   <img class="logo2" src="assets/img/fb.png" alt="">
  
-  <table class="sign_in_form">
-    <tbody>
-      <tr>
-        <td class="sign_in_label">Email or Phone</td>
-        <td class="sign_in_label">Password</td>
-      </tr>
-      <tr>
-        <td><input class="sign_in_input" type="email"></td>
-        <td><input class="sign_in_input" type="password"></td>
-        <td><button class="btn btn-primary btn-sm" id="submit">login</button></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>
-          <div><a>Forgotten account?</a></div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <form (ngSubmit)="onSignInSubmit()" >
+    <table class="sign_in_form">
+      <tbody>
+        <tr>
+          <td class="sign_in_label">Email or Phone</td>
+          <td class="sign_in_label">Password</td>
+        </tr>
+        <tr>
+          <td><input [(ngModel)]="signInUser.email" class="sign_in_input" id="email" type="email" required name='email' ></td>
+          <td><input [(ngModel)]="signInUser.password"  class="sign_in_input" id="password" type="password" required name='password' ></td>
+          <td><button [disabled]="!(f.valid)" type="submit" class="btn btn-primary btn-sm" id="submit" [ngClass]="{'disabled': !(f.valid)}">login</button></td>
+  
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <div><a>Forgotten account?</a></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
 
 </div>

@@ -1,27 +1,29 @@
-
-
 <div class="register-body">
   <div class="row">
-    <div class="col-xs-1" >rfthg</div>
-    <div class="col-xs-5">dftgh</div>
+    <div class="col-xs-1" ></div>
+    <div class="col-xs-5"></div>
     <div class="col-xs-5">
       <h1><b>Create a new account</b></h1>
       <h4>It's free and always will be.</h4>
-      <form>
+      <form (ngSubmit)="onSignUpSubmit()" >
+
         <div class="form-row">
           <div class="form-group col-md-6 sign_up_first_name">
-            <input type="email" class="form-control sign_up_input" id="inputEmail4" placeholder="Email">
+            <input [(ngModel)]="signUpUser.email" name='email' type="email" class="form-control sign_up_input" id="email" placeholder="Email" required>
           </div>
           <div class="form-group col-md-6 sign_up_surname_name">
-            <input type="password" class="form-control sign_up_input" id="inputPassword4" placeholder="Password">
+            <input [(ngModel)]="signUpUser.password" name='password' type="password" id="password" class="form-control sign_up_input" placeholder="Password" required>
           </div>
         </div>
+
         <div class="form-group">
           <input type="text" class="form-control sign_up_input" id="inputAddress" placeholder="1234 Main St">
         </div>
+
         <div class="form-group">
           <input type="text" class="form-control sign_up_input" id="inputAddress2" placeholder="Apartment, studio, or floor">
         </div>
+
         <h4>Birthday</h4>
 
         <mat-form-field>
@@ -33,19 +35,20 @@
         <div>
           <span>
             <span><input type="radio" name="sex" value="Female">Female</span>
-              <span><input type="radio" name="sex" value="Male">Male</span>
+            <span><input type="radio" name="sex" value="Male">Male</span>
           </span>
         </div>
-  
-        <button type="submit" class="btn btn-primary">Sign in</button>
+
+        <button type="submit"
+              class="btn btn-primary"
+              [disabled]="!(f.valid) || !(signUpUser.password == signUpUser.passwordConfirmation)">
+        Sign up
+        </button>
       </form>
 
     </div>
-    <div class="col-xs-1">dfcgh</div>
+    <div class="col-xs-1"></div>
   </div>
 </div>
 
-<div class="register-footer">
-  <button (click)="signUp()" >hi wilsontyhftvgch</button>
-</div>
 

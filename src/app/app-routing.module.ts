@@ -6,16 +6,20 @@ import { RegisterComponent } from './register/register.component';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: RegisterComponent,
     pathMatch: 'full'
-  },
-  {
-    path: 'home',
-    component: HomeComponent
   },
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'sign_in',
+    component: RegisterComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent
   }
 ];
 
