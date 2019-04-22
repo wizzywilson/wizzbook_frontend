@@ -1,29 +1,4 @@
-<div class="register-header">
 
-  <img class="logo1" src="assets/img/Facebook.svg" alt="">
-  <img class="logo2" src="assets/img/fb.png" alt="">
- 
-  <table class="sign_in_form">
-    <tbody>
-      <tr>
-        <td class="sign_in_label">Email or Phone</td>
-        <td class="sign_in_label">Password</td>
-      </tr>
-      <tr>
-        <td><input class="sign_in_input" type="email"></td>
-        <td><input class="sign_in_input" type="password"></td>
-        <td><button class="btn btn-primary btn-sm" id="submit">login</button></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>
-          <div><a>Forgotten account?</a></div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-</div>
 
 <div class="register-body">
   <div class="row">
@@ -47,24 +22,24 @@
         <div class="form-group">
           <input type="text" class="form-control sign_up_input" id="inputAddress2" placeholder="Apartment, studio, or floor">
         </div>
+        <h4>Birthday</h4>
 
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+  
+        <div>
+          <span>
+            <span><input type="radio" name="sex" value="Female">Female</span>
+              <span><input type="radio" name="sex" value="Male">Male</span>
+          </span>
+        </div>
+  
+        <button type="submit" class="btn btn-primary">Sign in</button>
       </form>
-      <h4>Birthday</h4>
 
-      <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-
-      <div>
-        <span>
-          <span><input type="radio" name="sex" value="Female">Female</span>
-            <span><input type="radio" name="sex" value="Male">Male</span>
-        </span>
-      </div>
-
-      <button type="submit" class="btn btn-primary">Sign in</button>
     </div>
     <div class="col-xs-1">dfcgh</div>
   </div>
