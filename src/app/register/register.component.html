@@ -5,7 +5,7 @@
     <div class="col-xs-5">
       <h1><b>Create a new account</b></h1>
       <h4>It's free and always will be.</h4>
-      <form (ngSubmit)="onSignUpSubmit()" >
+      <form (ngSubmit)="onSignUpSubmit()" #f="ngForm" >
 
         <div class="form-row">
           <div class="form-group col-md-6 sign_up_first_name">
@@ -13,6 +13,9 @@
           </div>
           <div class="form-group col-md-6 sign_up_surname_name">
             <input [(ngModel)]="signUpUser.password" name='password' type="password" id="password" class="form-control sign_up_input" placeholder="Password" required>
+          </div>
+          <div class="form-group col-md-6 sign_up_surname_name">
+              <input [(ngModel)]="signUpUser.passwordConfirmation" name='passwordConfirmation' type="passwordConfirmation" id="passwordConfirmation" class="form-control sign_up_input" placeholder="Confirm password" required>
           </div>
         </div>
 
@@ -23,21 +26,13 @@
         <div class="form-group">
           <input type="text" class="form-control sign_up_input" id="inputAddress2" placeholder="Apartment, studio, or floor">
         </div>
-
-        <h4>Birthday</h4>
-
-        <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
   
-        <div>
+        <!-- <div>
           <span>
             <span><input type="radio" name="sex" value="Female">Female</span>
             <span><input type="radio" name="sex" value="Male">Male</span>
           </span>
-        </div>
+        </div> -->
 
         <button type="submit"
               class="btn btn-primary"

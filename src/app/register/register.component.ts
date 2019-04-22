@@ -32,7 +32,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSignUpSubmit(){
-
     this.tokenAuthService.registerAccount(this.signUpUser).subscribe(
 
         (res) => {
