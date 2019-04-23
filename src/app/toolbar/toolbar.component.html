@@ -2,8 +2,9 @@
 
   <img class="logo1" src="assets/img/Facebook.svg" alt="">
   <img class="logo2" src="assets/img/fb.png" alt="">
- 
-  <form (ngSubmit)="onSignInSubmit()" #f="ngForm" >
+  
+<div *ngIf="!(authService.userSignedIn$ | async)"  >
+  <form (ngSubmit)="onSignInSubmit()" #f="ngForm"  >
     <table class="sign_in_form">
       <tbody>
         <tr>
@@ -11,10 +12,9 @@
           <td class="sign_in_label">Password</td>
         </tr>
         <tr>
-          <td><input [(ngModel)]="signInUser.email" class="sign_in_input" id="email" type="email" required name='email' ></td>
-          <td><input [(ngModel)]="signInUser.password"  class="sign_in_input" id="password" type="password" required name='password' ></td>
+          <td><input [(ngModel)]="signInUser.email" class="sign_in_input"  type="email" required name='email' ></td>
+          <td><input [(ngModel)]="signInUser.password"  class="sign_in_input"  type="password" required name='password' ></td>
           <td><button [disabled]="!(f.valid)" type="submit" class="btn btn-primary btn-sm" id="submit">login</button></td>
-  
         </tr>
         <tr>
           <td></td>
@@ -25,5 +25,9 @@
       </tbody>
     </table>
   </form>
+</div> 
+
 
 </div>
+
+<button class="btn btn-primary btn-sm" (click)="logOut()" *ngIf="authService.userSignedIn$ | async" >LOGOUT</button>

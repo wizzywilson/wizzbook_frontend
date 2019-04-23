@@ -1,7 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Angular2TokenService } from "angular2-token";
-import { environment } from "../../environments/environment";
-import {Router} from '@angular/router';
+import { AuthService } from "../services/auth.service";
 
 @Component({
   selector: 'app-toolbar',
@@ -16,28 +14,16 @@ export class ToolbarComponent implements OnInit {
   };
   @Output() onFormResult = new EventEmitter<any>();
 
-  constructor(
-    private tokenAuthService: Angular2TokenService,
-    private router: Router
-  ){
-    this.tokenAuthService.init(environment.token_auth_config);
-  }
+  constructor(public authService:AuthService) { }
 
   ngOnInit() {
   }
 
   onSignInSubmit(){
-    this.tokenAuthService.signIn(this.signInUser).subscribe(
-        res => {
-          if(res.status == 200){
-            this.router.navigateByUrl('/home');
-          }
-        },
-        err => {
-          console.log('err:', err);
-          this.onFormResult.emit({signedIn: false, err});
-        }
-    )
+    this.authService.logInUser(this.signInUser);
+  }
 
+  logOut(){
+    this.authService.logOutUser();
   }
 }
