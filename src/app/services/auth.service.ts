@@ -10,55 +10,18 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
 
-  userSignedIn$:Subject<boolean> = new Subject();
-
-  constructor(private tokenAuthService: AngularTokenService, private router:Router){
-    this.tokenAuthService.validateToken().subscribe(
-      res => {
-        console.log(res)       
-        this.userSignedIn$.next(true);
-      },
-      err => {
-        this.userSignedIn$.next(false);
-        console.log(err)        
-      }
-    )    
-  }
-
+  constructor(private tokenAuthService: AngularTokenService, private router:Router){  }
 
   logOutUser():Observable<Response>{
-    return this.tokenAuthService.signOut().pipe(
-      map(
-        res => {
-          this.userSignedIn$.next(false);
-          return res;
-        }
-    ))
+    return this.tokenAuthService.signOut()
   }
 
   registerUser(signUpData:  {login:string, password:string, passwordConfirmation:string}):Observable<Response>{
-    return this.tokenAuthService.registerAccount(signUpData).pipe(
-      map(
-        res => {
-          this.userSignedIn$.next(true);
-          return res
-        }
-    ))
+    return this.tokenAuthService.registerAccount(signUpData)
   }
 
   logInUser(signInData: {login :string, password:string}):Observable<Response>{
-    return this.tokenAuthService.signIn(signInData).pipe(
-      map(
-        res => {
-          this.userSignedIn$.next(true);
-          return res
-        }
-    ));
+    return this.tokenAuthService.signIn(signInData)
   }
-
-  validationTokenCheck(){
-
-  }
-
 
 }
