@@ -12,7 +12,7 @@
           <td class="sign_in_label">Password</td>
         </tr>
         <tr>
-          <td><input [(ngModel)]="signInUser.email" class="sign_in_input"  type="email" required name='email' ></td>
+          <td><input [(ngModel)]="signInUser.login" class="sign_in_input"  type="email" required name='email' ></td>
           <td><input [(ngModel)]="signInUser.password"  class="sign_in_input"  type="password" required name='password' ></td>
           <td><button [disabled]="!(f.valid)" type="submit" class="btn btn-primary btn-sm" id="submit">login</button></td>
         </tr>

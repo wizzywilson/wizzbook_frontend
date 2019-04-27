@@ -1,14 +1,12 @@
 import { Injectable }     from '@angular/core';
 import { CanActivate, Router } from "@angular/router";
-import { Angular2TokenService } from "angular2-token";
-import { environment } from "../../environments/environment";
-
+import { AngularTokenService } from "angular-token";
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private authTokenService:Angular2TokenService,
+  constructor(private authTokenService:AngularTokenService,
               private router:Router){
-                this.authTokenService.init(environment.token_auth_config);
+                // this.authTokenService.init(environment.token_auth_config);
               }
 
   canActivate() {

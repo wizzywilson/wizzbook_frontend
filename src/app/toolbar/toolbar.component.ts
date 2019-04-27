@@ -9,7 +9,7 @@ import { AuthService } from "../services/auth.service";
 export class ToolbarComponent implements OnInit {
 
   signInUser = {
-    email: '',
+    login: '',
     password: ''
   };
   @Output() onFormResult = new EventEmitter<any>();

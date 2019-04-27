@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material';
-import { Angular2TokenService } from 'angular2-token';
-import { HttpModule } from '@angular/http';
+import { AngularTokenModule } from 'angular-token';
+// import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
@@ -27,11 +28,15 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpModule,
+    // HttpModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    AngularTokenModule.forRoot({
+      apiBase: 'http://localhost:3000'
+    }),
+    HttpClientModule
   ],
-  providers: [Angular2TokenService, AuthService, AuthGuard],
+  providers: [AngularTokenModule, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

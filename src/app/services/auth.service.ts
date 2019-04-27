@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Angular2TokenService } from "angular2-token";
-import { environment } from "../../environments/environment";
+import { AngularTokenService } from "angular-token";
 import {Subject, Observable} from "rxjs";
 import {Router} from "@angular/router";
 
@@ -12,8 +11,8 @@ export class AuthService {
 
   userSignedIn$:Subject<boolean> = new Subject();
 
-  constructor(private tokenAuthService: Angular2TokenService, private router:Router){
-    this.tokenAuthService.init(environment.token_auth_config);
+  constructor(private tokenAuthService: AngularTokenService, private router:Router){
+    // this.tokenAuthService.init(environment.token_auth_config);
     if(this.tokenAuthService.userSignedIn()){
       this.validationTokenCheck();
     }else{
@@ -35,7 +34,7 @@ export class AuthService {
     );
   }
 
-  registerUser(signUpData:  {email:string, password:string, passwordConfirmation:string}){
+  registerUser(signUpData:  {login:string, password:string, passwordConfirmation:string}){
     this.tokenAuthService.registerAccount(signUpData).subscribe(
       res =>{
         this.userSignedIn$.next(true);
@@ -45,7 +44,7 @@ export class AuthService {
     );
   }
 
-  logInUser(signInData: {email:string, password:string}){
+  logInUser(signInData: {login:string, password:string}){
     this.tokenAuthService.signIn(signInData).subscribe(
       res => {
         this.userSignedIn$.next(true);
