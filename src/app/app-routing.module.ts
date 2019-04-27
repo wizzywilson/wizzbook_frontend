@@ -7,15 +7,11 @@ import { AuthGuard } from "./guards/auth.guard";
 const routes: Routes = [
   {
     path: '',
-    component: RegisterComponent,
+    redirectTo: 'welcome_page',
     pathMatch: 'full'
   },
   {
-    path: 'register',
-    component: RegisterComponent
-  },
-  {
-    path: 'sign_in',
+    path: 'welcome_page',
     component: RegisterComponent
   },
   {

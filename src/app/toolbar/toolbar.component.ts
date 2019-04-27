@@ -13,6 +13,7 @@ export class ToolbarComponent implements OnInit {
     login: '',
     password: ''
   };
+  
   @Output() onFormResult = new EventEmitter<any>();
 
   constructor(
@@ -32,7 +33,7 @@ export class ToolbarComponent implements OnInit {
 
   logOut(){
     this.authService.logOutUser().subscribe(
-      (res)=>this.router.navigateByUrl('/'),
+      ()=>this.router.navigateByUrl('/'),
       (err)=> console.log(err)
     );
   }
