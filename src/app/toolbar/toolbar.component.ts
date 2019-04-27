@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from "../services/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-toolbar',
@@ -14,16 +15,25 @@ export class ToolbarComponent implements OnInit {
   };
   @Output() onFormResult = new EventEmitter<any>();
 
-  constructor(public authService:AuthService) { }
+  constructor(
+    public authService:AuthService,
+    private router:Router
+  ) { }
 
   ngOnInit() {
   }
 
   onSignInSubmit(){
-    this.authService.logInUser(this.signInUser);
+    this.authService.logInUser(this.signInUser).subscribe(
+      ()=> this.router.navigateByUrl('/profile'),
+      (err)=> console.log(err)
+    );
   }
 
   logOut(){
-    this.authService.logOutUser();
+    this.authService.logOutUser().subscribe(
+      (res)=>this.router.navigateByUrl('/'),
+      (err)=> console.log(err)
+    );
   }
 }
