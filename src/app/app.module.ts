@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthService } from "./services/auth.service";
 import { AuthGuard } from "./guards/auth.guard";
 import { CommonModule } from '@angular/common';  
+import { ErrorsHandlerService } from "./services/errors-handler.service"
 
 @NgModule({
   declarations: [
@@ -36,7 +37,15 @@ import { CommonModule } from '@angular/common';
     }),
     HttpClientModule
   ],
-  providers: [AngularTokenModule, AuthService, AuthGuard],
+  providers: [
+    AngularTokenModule,
+    AuthService,
+    AuthGuard,
+    {
+      provide: ErrorHandler,
+      useClass: ErrorsHandlerService
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
