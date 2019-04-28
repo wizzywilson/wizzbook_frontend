@@ -29,3 +29,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 Register & Login Authentication
 1. https://medium.com/@avatsaev/angular-2-and-ruby-on-rails-user-authentication-fde230ddaed8
 2. https://angular-token.gitbook.io/docs/migrate-to-7 
+
+Error Handling
+1. https://medium.com/@aleixsuau/error-handling-angular-859d529fa53a
