@@ -26,13 +26,13 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  // Error is caught in errorhandler
   onSignUpSubmit() {
     this.authService.registerUser(this.signUpUser).subscribe(
       () => {
         this.router.navigateByUrl('/profile');
         this.snackbar.notifyMessage('Signup Successfull', 'OK');
-      },
-      (err) => console.log(err)
+      }
     );
   }
 

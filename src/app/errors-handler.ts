@@ -32,6 +32,10 @@ export class ErrorsHandler implements ErrorHandler {
               this.snackbar.notifyMessage('Internal Server Error', 'OK');
               break;
             }
+            case 422: {
+              this.snackbar.notifyMessage(error.error.errors.full_messages, 'OK');
+              break;
+            }
             default: {
               this.snackbar.notifyMessage(error.message, 'OK');
               break;
