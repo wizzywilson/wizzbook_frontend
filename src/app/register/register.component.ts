@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import {Router} from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackbar: NotificationService
   ) { }
 
   ngOnInit() {
@@ -29,10 +29,8 @@ export class RegisterComponent implements OnInit {
   onSignUpSubmit() {
     this.authService.registerUser(this.signUpUser).subscribe(
       () => {
-        this.router.navigateByUrl('/profile')
-        .then(() => this.snackBar.open('Signup Successfull', 'Ok', {
-          duration: 5000,
-        }));
+        this.router.navigateByUrl('/profile');
+        this.snackbar.notifyMessage('Signup Successfull', 'OK');
       },
       (err) => console.log(err)
     );

@@ -32,3 +32,7 @@ Register & Login Authentication
 
 Error Handling
 1. https://medium.com/@aleixsuau/error-handling-angular-859d529fa53a
+
+Snackbar
+1. https://material.angular.io/components/snack-bar/examples
+2. https://stackoverflow.com/questions/50101912/snackbar-position-wrong-when-use-errorhandler-in-angular-5-and-material

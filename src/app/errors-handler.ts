@@ -1,13 +1,15 @@
-import { ErrorHandler, Injectable } from '@angular/core';
+import { ErrorHandler, Injectable, NgZone } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { NotificationService } from './services/notification.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ErrorsHandler implements ErrorHandler {
 
-  constructor() {}
+  constructor(
+    private snackbar: NotificationService
+  ) {}
 
   handleError(error: Error | HttpErrorResponse) {
     if (error instanceof HttpErrorResponse) {
@@ -17,8 +19,7 @@ export class ErrorsHandler implements ErrorHandler {
        } else {
          // Handle Http Error (error.status === 403, 404...)
          if (error.status === 401) {
-           console.log('Unauthorized!!');
-            //  const notificationService = this.injector.get(NotificationService);
+           this.snackbar.notifyMessage('Unauthorized User', 'OK');
          }
        }
     } else {

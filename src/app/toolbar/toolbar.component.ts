@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -18,7 +18,7 @@ export class ToolbarComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackbar: NotificationService
   ) { }
 
   ngOnInit() {
@@ -27,10 +27,8 @@ export class ToolbarComponent implements OnInit {
   onSignInSubmit() {
     this.authService.logInUser(this.signInUser).subscribe(
       () => {
-        this.router.navigateByUrl('/profile')
-          .then(() => this.snackBar.open('Login Successfull', 'Ok', {
-            duration: 5000,
-          }));
+        this.router.navigateByUrl('/profile');
+        this.snackbar.notifyMessage('Login Successfull', 'OK');
       },
       (err) => console.log(err)
     );
@@ -39,10 +37,8 @@ export class ToolbarComponent implements OnInit {
   logOut() {
     this.authService.logOutUser().subscribe(
       () => {
-        this.router.navigateByUrl('/')
-          .then(() => this.snackBar.open('Successfully Logged out', 'Ok', {
-            duration: 5000,
-          }));
+        this.router.navigateByUrl('/');
+        this.snackbar.notifyMessage('Successfully Logged out', 'OK');
       },
       (err) => console.log(err)
     );
