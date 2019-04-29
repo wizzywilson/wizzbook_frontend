@@ -1,6 +1,7 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { AuthService } from "../services/auth.service";
-import {Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import {Router} from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,7 @@ import {Router} from "@angular/router";
 })
 
 export class RegisterComponent implements OnInit {
-  
+
   signUpUser = {
     login: '',
     password: '',
@@ -17,20 +18,24 @@ export class RegisterComponent implements OnInit {
   };
 
   constructor(
-    public authService:AuthService,
-    private router:Router
+    public authService: AuthService,
+    private router: Router,
+    private snackBar: MatSnackBar
   ) { }
-
-  @Output() onFormResult = new EventEmitter<any>();
 
   ngOnInit() {
   }
 
-  onSignUpSubmit(){
+  onSignUpSubmit() {
     this.authService.registerUser(this.signUpUser).subscribe(
-      (res)=> this.router.navigateByUrl('/profile'),
-      (err)=> console.log(err)
-    )
+      () => {
+        this.router.navigateByUrl('/profile')
+        .then(() => this.snackBar.open('Signup Successfull', 'Ok', {
+          duration: 5000,
+        }));
+      },
+      (err) => console.log(err)
+    );
   }
 
 }

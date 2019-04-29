@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { AuthService } from "../services/auth.service";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-toolbar',
@@ -13,28 +14,37 @@ export class ToolbarComponent implements OnInit {
     login: '',
     password: ''
   };
-  
-  @Output() onFormResult = new EventEmitter<any>();
 
   constructor(
-    public authService:AuthService,
-    private router:Router
+    public authService: AuthService,
+    private router: Router,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
   }
 
-  onSignInSubmit(){
+  onSignInSubmit() {
     this.authService.logInUser(this.signInUser).subscribe(
-      ()=> this.router.navigateByUrl('/profile'),
-      (err)=> console.log(err)
+      () => {
+        this.router.navigateByUrl('/profile')
+          .then(() => this.snackBar.open('Login Successfull', 'Ok', {
+            duration: 5000,
+          }));
+      },
+      (err) => console.log(err)
     );
   }
 
-  logOut(){
+  logOut() {
     this.authService.logOutUser().subscribe(
-      ()=>this.router.navigateByUrl('/'),
-      (err)=> console.log(err)
+      () => {
+        this.router.navigateByUrl('/')
+          .then(() => this.snackBar.open('Successfully Logged out', 'Ok', {
+            duration: 5000,
+          }));
+      },
+      (err) => console.log(err)
     );
   }
 }

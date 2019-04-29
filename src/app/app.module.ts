@@ -7,35 +7,34 @@ import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material';
 import { AngularTokenModule } from 'angular-token';
-// import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
-import { AuthService } from "./services/auth.service";
-import { AuthGuard } from "./guards/auth.guard";
-import { CommonModule } from '@angular/common';  
-import { ErrorsHandlerService } from "./services/errors-handler.service"
-
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guards/auth.guard';
+import { CommonModule } from '@angular/common';
+import { ErrorsHandler } from './errors-handler';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     ToolbarComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    // HttpModule,
     FormsModule,
     CommonModule,
     AngularTokenModule.forRoot({
       apiBase: 'http://localhost:3000'
     }),
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [
     AngularTokenModule,
@@ -43,9 +42,10 @@ import { ErrorsHandlerService } from "./services/errors-handler.service"
     AuthGuard,
     {
       provide: ErrorHandler,
-      useClass: ErrorsHandlerService
+      useClass: ErrorsHandler
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [MatSnackBarModule]
 })
 export class AppModule { }
