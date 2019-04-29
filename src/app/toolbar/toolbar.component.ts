@@ -24,23 +24,23 @@ export class ToolbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSignInSubmit() {
+  // Error is caught in errorhandler
+  onSignInSubmit() { 
     this.authService.logInUser(this.signInUser).subscribe(
       () => {
         this.router.navigateByUrl('/profile');
         this.snackbar.notifyMessage('Login Successfull', 'OK');
-      },
-      (err) => console.log(err)
+      }
     );
   }
 
+  // Error is caught in errorhandler
   logOut() {
     this.authService.logOutUser().subscribe(
       () => {
         this.router.navigateByUrl('/');
         this.snackbar.notifyMessage('Successfully Logged out', 'OK');
-      },
-      (err) => console.log(err)
+      }
     );
   }
 }
