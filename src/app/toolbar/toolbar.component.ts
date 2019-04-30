@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { NotificationService } from '../services/notification.service';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',

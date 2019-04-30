@@ -16,6 +16,9 @@ import { AuthGuard } from './guards/auth.guard';
 import { CommonModule } from '@angular/common';
 import { ErrorsHandler } from './errors-handler';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +37,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
       apiBase: 'http://localhost:3000'
     }),
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatButtonModule
   ],
   providers: [
     AngularTokenModule,
@@ -46,6 +51,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     }
   ],
   bootstrap: [AppComponent],
-  exports: [MatSnackBarModule]
+  exports: [
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatButtonModule
+  ]
 })
 export class AppModule { }
