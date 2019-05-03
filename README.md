@@ -1,38 +1,15 @@
-# Wizzbook
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.2.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-Register & Login Authentication
+# Register & Login Authentication
 1. https://medium.com/@avatsaev/angular-2-and-ruby-on-rails-user-authentication-fde230ddaed8
 2. https://angular-token.gitbook.io/docs/migrate-to-7 
 
-Error Handling
+# Error Handling
 1. https://medium.com/@aleixsuau/error-handling-angular-859d529fa53a
 
-Snackbar
+# Snackbar
 1. https://material.angular.io/components/snack-bar/examples
 2. https://stackoverflow.com/questions/50101912/snackbar-position-wrong-when-use-errorhandler-in-angular-5-and-material
+
+# Forms 
+1. https://codecraft.tv/courses/angular/forms/model-driven-validation/
+2. API call for every key press in the search bar -> https://codecraft.tv/courses/angular/forms/reactive-model-form/
+3.

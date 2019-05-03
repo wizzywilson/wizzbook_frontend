@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { NotificationService } from '../services/notification.service';
@@ -15,6 +15,8 @@ export class ToolbarComponent implements OnInit {
     password: ''
   };
 
+  @ViewChild('f') form: any;
+
   constructor(
     public authService: AuthService,
     private router: Router,
@@ -25,13 +27,17 @@ export class ToolbarComponent implements OnInit {
   }
 
   // Error is caught in errorhandler
-  onSignInSubmit() { 
-    this.authService.logInUser(this.signInUser).subscribe(
-      () => {
-        this.router.navigateByUrl('/profile');
-        this.snackbar.notifyMessage('Login Successfull', 'OK');
-      }
-    );
+  onSignInSubmit() {
+    if (!this.form.valid) {
+      this.form.reset();
+    } else{
+      this.authService.logInUser(this.signInUser).subscribe(
+        () => {
+          this.router.navigateByUrl('/profile');
+          this.snackbar.notifyMessage('Login Successfull', 'OK');
+        }
+      );
+    }
   }
 
   // Error is caught in errorhandler

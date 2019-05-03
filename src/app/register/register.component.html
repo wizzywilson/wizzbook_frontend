@@ -5,7 +5,7 @@
     <div class="col-xs-5">
       <h1><b>Create a new account</b></h1>
       <h4>It's free and always will be.</h4>
-      <form (ngSubmit)="onSignUpSubmit()" #f="ngForm" >
+      <!-- <form (ngSubmit)="onSignUpSubmit()" #f="ngForm" >
 
         <div class="form-row">
           <div class="form-group col-md-6 sign_up_first_name">
@@ -27,18 +27,72 @@
           <input type="text" class="form-control sign_up_input" id="inputAddress2" placeholder="Apartment, studio, or floor">
         </div>
   
-        <!-- <div>
+         <div>
           <span>
             <span><input type="radio" name="sex" value="Female">Female</span>
             <span><input type="radio" name="sex" value="Male">Male</span>
           </span>
-        </div> -->
+        </div> 
 
         <button type="submit"
               class="btn btn-primary"
               [disabled]="!(f.valid) || !(signUpUser.password == signUpUser.passwordConfirmation)">
         Sign up
         </button>
+      </form> -->
+
+      <form novalidate (ngSubmit)="onSignUpSubmit()" #f="ngForm">
+
+        <fieldset ngModelGroup="name">
+          <mat-form-field >
+            <mat-label>First Name</mat-label>
+            <input type="text"  matInput name="first_name"  [(ngModel)]="signUpUser.first_name" #first_name="ngModel" required>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input type="text" matInput name="last_name" [(ngModel)]="signUpUser.last_name"  #last_name="ngModel" required>
+          </mat-form-field>        
+        </fieldset>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="Email" [(ngModel)]="signUpUser.login" name = login 
+              #login="ngModel" pattern="[^ @]*@[^ @]*." required>
+              <mat-error *ngIf="login.errors && (login.dirty || login.touched)">
+                <p *ngIf="login.errors.required">Email is required</p>
+                <p *ngIf="login.errors.pattern">Please enter a valid email address </p>
+              </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput placeholder="Enter your password" [(ngModel)]="signUpUser.password" name=password type="password"
+              minlength="8" #password="ngModel" required>
+            <mat-error *ngIf="password.errors && (password.dirty || password.touched)">
+              <p *ngIf="password.errors.required">Password is required</p>
+              <p *ngIf="password.errors.minlength">Password must be at least 8 characters long</p>
+            </mat-error>
+          </mat-form-field>
+                    <mat-form-field>
+                      <input matInput placeholder="Confirm password" [(ngModel)]="signUpUser.passwordConfirmation" name = passwordConfirmation type="password"
+                        minlength="8" #passwordConfirmation="ngModel" required>
+                      <mat-error *ngIf="passwordConfirmation.errors && (passwordConfirmation.dirty || passwordConfirmation.touched)">
+                        <p *ngIf="passwordConfirmation.errors.required">Password is required</p>
+                        <p *ngIf="passwordConfirmation.value != password.value">Password does not match </p>
+
+                      </mat-error>
+                    </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" [(ngModel)]="signUpUser.dob" name=dob
+              #dob="ngModel" placeholder="Select your Date of Birth" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <button mat-flat-button color="primary" [disabled]="f.invalid" >Sign Up</button>
+
       </form>
 
     </div>
@@ -47,3 +101,4 @@
 </div>
 
 
+<pre>{{f.value | json}}</pre>

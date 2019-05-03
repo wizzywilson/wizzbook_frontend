@@ -1,39 +1,25 @@
-<!-- <div class="register-header">
-
-  <img class="logo1" src="assets/img/Facebook.svg" alt="">
-  <img class="logo2" src="assets/img/fb.png" alt="">
-  
-<div *ngIf="!(authService.userSignedIn$ | async)"  >
-  <form (ngSubmit)="onSignInSubmit()" #f="ngForm"  >
-    <table class="sign_in_form">
-      <tbody>
-        <tr>
-          <td class="sign_in_label">Email or Phone</td>
-          <td class="sign_in_label">Password</td>
-        </tr>
-        <tr>
-          <td><input [(ngModel)]="signInUser.login" class="sign_in_input"  type="email" required name='email' ></td>
-          <td><input [(ngModel)]="signInUser.password"  class="sign_in_input"  type="password" required name='password' ></td>
-          <td><button [disabled]="!(f.valid)" type="submit" class="btn btn-primary btn-sm" id="submit">login</button></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-            <div><a>Forgotten account?</a></div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </form>
-</div> 
-
-
-</div>
-
-<button class="btn btn-primary btn-sm" (click)="logOut()" *ngIf="authService.userSignedIn$ | async" >LOGOUT</button> -->
 <mat-toolbar color="primary" >
-  <button mat-flat-button color="primary">Primary</button>
-  <button mat-flat-button color="primary">Comonents</button>
-  <button mat-flat-button color="primary">CDK</button>
+  <form *ngIf="!(authService.userSignedIn$ | async)" class="login-form"  #f="ngForm" (ngSubmit)="onSignInSubmit()">
+    <mat-form-field class="login-textfields" style="margin-right: 10px;" >
+      <input matInput placeholder="Email" [(ngModel)]="signInUser.login" name = login 
+        #login="ngModel" pattern="[^ @]*@[^ @]*." required>
+        <mat-error *ngIf="login.errors && (login.dirty || login.touched)">
+          <p *ngIf="login.errors.required">Email is required</p>
+          <p *ngIf="login.errors.pattern">Please enter a valid email address </p>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="login-textfields">
+      <input matInput placeholder="Enter your password" [(ngModel)]="signInUser.password" 
+        name = password type="password" minlength="8" #password="ngModel" required>
+        <mat-error *ngIf="password.errors && (password.dirty || password.touched)">
+          <p *ngIf="password.errors.required">Password is required</p>
+          <p *ngIf="password.errors.minlength">Password must be at least 8 characters long</p>
+        </mat-error>
+    </mat-form-field>
+  <button mat-flat-button color="primary">Submit</button>
+  </form>
+<button mat-flat-button color="primary" (click)="logOut()" *ngIf="authService.userSignedIn$ | async">LOGOUT</button>
 
 </mat-toolbar>
+
+<!-- <pre>{{f.value | json}}</pre> -->

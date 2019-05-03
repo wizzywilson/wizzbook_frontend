@@ -10,8 +10,12 @@ import { NotificationService } from '../services/notification.service';
 })
 
 export class RegisterComponent implements OnInit {
-
+  minDate = new Date(1990, 0, 1);
+  maxDate = new Date(2002, 0, 1);
   signUpUser = {
+    first_name: '',
+    last_name: '',
+    dob: '',
     login: '',
     password: '',
     passwordConfirmation: ''
